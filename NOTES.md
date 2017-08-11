@@ -20,6 +20,7 @@ Building a Sinatra app starting with file structure
   * gem 'pry'
   * gem 'sinatra-activerecord'
   * gem 'require_all'
+  * gem 'shotgun'
 ~ now that I have bundler, go to my environment
   * require 'bundler'
   * Bundler.require

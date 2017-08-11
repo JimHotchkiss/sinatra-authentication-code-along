@@ -1,14 +1,10 @@
-class ApplicationController < Sinatra::Base 
+class ApplicationController < Sinatra::Base
 
-  configure do 
+  configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
     set :sessions_secret, 'carcollection'
-  end 
+  end
 
-  get '/' do 
-    'Hello World'
-  end 
-  
-end 
+end

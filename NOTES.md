@@ -61,3 +61,38 @@ Building a Sinatra app starting with file structure
 ~ now, enable sessions in application-controller
   * enable :sessions
     set :sessions_secret, 'carcollection'
+
+**** Able to connect to server and put out Hello World ****
+
+~ make a new 'sessions' file
+  * app/controller/sessions_controller.rb
+~ now, make the views director and session folder
+  * app/views/sessions/login.html
+
+*** we've mounted the controller in config.ru, however, our
+*** sessions-controller is not mounted, so, in config.ru we
+*** need to mount sessions_
+    ## Also remember, in browser, /login ##
+
+** Authentication **
+
+~ form in login.erb, asking 'what is your email?'
+  * <input  type="text" name="email">
+*** Make another controller ***
+  * app/controller/post_controller.rb
+    !! Remember: mount new controller, in config.ru, 'use'
+*** Now make a UsersController, and mount it ***
+  * app/controller/users_controller.rb
+
+*** Back to the login-form ***
+~ 'action' - where this data is going?
+  * action='/sessions' method='POST'
+  * now make my post '/sessions' route
+  * with raise.params.inspect
+!! this now tells us that login is communicating !!
+  * with error: doesn't know email => ""
+  * now if I enter an email it will read that   
+  * email.  That's good.  
+
+~ now I want to take our params[:email], and
+~ set it equal to session[:email]! 

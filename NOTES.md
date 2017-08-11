@@ -95,4 +95,9 @@ Building a Sinatra app starting with file structure
   * email.  That's good.  
 
 ~ now I want to take our params[:email], and
-~ set it equal to session[:email]! 
+~ set it equal to session[:email]!
+~ and now redirect to '/posts'
+!! So, session[:email] was not registering
+!! the problem was in application_controller, and was
+!! a type. It was 'set :session_secret, 'auth_demo_lv'
+** Works now ** 

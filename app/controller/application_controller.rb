@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :sessions_secret, 'carcollection'
+    set :session_secret, 'auth_demo_lv'
   end
 
 end

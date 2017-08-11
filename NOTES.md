@@ -138,4 +138,26 @@ Building a Sinatra app starting with file structure
   * it directs me to '/login'
   * once I log in, it takes me to welcome page
   * if I go to '/posts/new' it redirects me to 'A new post form'
-  * 
+  * /login
+  * /logout
+~ NOW, we are going to get into authenticate
+~ Avi's notes:
+  1. I need users
+    * URLs - would like to have
+      * GET '/signup' => see a form
+      * POST '/users' => actually create users
+    * DATABASE
+      * To to make users table to store email
+        * rake db:create_migration NAME=create_users
+        * create_table in db/migrate/CreateUsers
+        * user model: app/models/user.rb
+          !! remember: User < ActiveRecord::Base
+        * migrate database
+          !! rake db:migrate
+        * test it by: rake console ~ User.create(:email => jon.email)
+  2. I need to give users passwords
+  3. Then need to be able to find user using their password
+  4. Change login system to use their email and password to authenticate
+  ~ Now, we've been able to populate out db
+  ~ We want to add functionality to our app, to test the users email
+    * 

@@ -1,3 +1,4 @@
+require 'pry'
 class SessionsController < ApplicationController
 
   get '/login' do
@@ -6,6 +7,7 @@ class SessionsController < ApplicationController
 
   post '/sessions' do
     login(params[:email])
+    #binding.pry # So this is working, without the loop in the method
     redirect '/posts' # This is suppose to say 'A list of publically...'
   end
 

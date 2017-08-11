@@ -100,4 +100,42 @@ Building a Sinatra app starting with file structure
 !! So, session[:email] was not registering
 !! the problem was in application_controller, and was
 !! a type. It was 'set :session_secret, 'auth_demo_lv'
-** Works now ** 
+** Works now **
+~ now we want to check is the user is logged in.  
+  * posts_controller.rb get '/posts/new'
+~ while we're at it, build a '/logout', in sessions_controller.rb
+## now we've stubbed out a fake login, now let's add protection ##
+~ make a new route in posts_controller.rb
+  * get '/posts/:id/edit' do
+!! however, what we want is to build helper methods to check log in
+~ build a helper method is accessible across all controllers
+  * application_controller: def logged_in?
+    !! !!session[:email]
+## Side note: you can take !! and turn an object into a T/F statement. For instance.
+  * def true?
+     !!self
+    end
+  * now you could ask 7.true? => true, nil.true? => false
+~ now replace the older, longer, logic with logged_in? method
+~ test this out by going to '/posts' in the browser
+  * so if I go to '/posts/new' without logging in
+  * it directs me to '/login'
+  * once I log in, it takes me to welcome page
+  * if I go to '/posts/new' it redirects me to 'A new post form'
+~ session[:email] = email is saying log in this user with this email
+~ lets build login and logout methods
+  * we abstract away the logic and make new helper methods
+~ now let's build more method in ApplicationController
+  * def login(email)
+     session[:email] = email
+    end
+  * def logout
+     session.clear
+    end
+
+~ to confirm this is all working, within shotgun
+  * so if I go to '/posts/new' without logging in
+  * it directs me to '/login'
+  * once I log in, it takes me to welcome page
+  * if I go to '/posts/new' it redirects me to 'A new post form'
+  * 

@@ -15,13 +15,13 @@ class ApplicationController < Sinatra::Base
       !!session[:email]
     end
 
-    def login(email)
-      if user = User.find_by(email: email)
+    def login(email, password)
+      user = User.find_by(:email => email)
+      if user && user.authenticate(password) # This works! 
 # if this finds a user object, then the user object will be assigned
 # to this user variable, and the entire statement will be truthy
 # if not, the entire thing, including the variable, will be equal to nil
-        session[:email] = user.email
-        binding.pry
+          session[:email] = user.email
 # Then I set a session based on that
       else
         redirect '/login'

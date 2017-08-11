@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   post '/sessions' do
-    login(params[:email])
+    login(params[:email], params[:password])
     #binding.pry # So this is working, without the loop in the method
     redirect '/posts' # This is suppose to say 'A list of publically...'
   end

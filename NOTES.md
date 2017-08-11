@@ -158,6 +158,29 @@ Building a Sinatra app starting with file structure
   2. I need to give users passwords
   3. Then need to be able to find user using their password
   4. Change login system to use their email and password to authenticate
-  ~ Now, we've been able to populate out db
-  ~ We want to add functionality to our app, to test the users email
-    * 
+~ Now, we've been able to populate out db
+~ We want to add functionality to our app, to test the users email
+~ added a loop in our login method, working well
+
+*** Now we need to address the password ***
+~ ActiveRecord has a SecurePassword method
+  * Documentation: http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html
+~ Need to add gem 'bcrypt', '~> 3.1.7' to our Gemfile
+~ We have to add a migration
+  * rake db:create_migration NAME=add_passwords_to_users
+~ Now add_column :users, :password_digest, :string
+~ Then rake db:migrate
+~ Now has_secure_password to User class
+  * This effectively gives us 5 additional methods! Yay
+~ Now I make a user with a password to see how the password is scrambled
+!! Following is an example, set password w/ .password
+  * u = User.new
+  * u.password = "hello@example.come"
+  * password_digest:
+  "$2a$10$3rTucAzy3Bbjab1fuv3G3uN4MS9lD9O9AB95XZljN3.LDMTdvEJ8G"
+  * .authenticate('some_password')
+~ So we want to add this security functionality to our login loop
+  * we want to add: .authenticate('some_password')
+  * we have to change '/sessions' to include params[:password]
+  * update form to include password input
+!! @ 1:07 Avi starts to build out signup and registering
